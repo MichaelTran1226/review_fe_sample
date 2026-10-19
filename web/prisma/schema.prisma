@@ -1,0 +1,105 @@
+// Prisma schema for Keystone CRM
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id           String         @id @default(uuid())
+  email        String         @unique
+  passwordHash String
+  name         String
+  role         String         @default("AGENT") // AGENT, MANAGER, ADMIN
+  avatarUrl    String?
+  createdAt    DateTime       @default(now())
+  updatedAt    DateTime       @updatedAt
+
+  assignedLeads Lead[]        @relation("AssignedAgent")
+  activities    LeadActivity[]
+  notes         LeadNote[]
+  savedViews    SavedView[]
+
+  @@map("users")
+}
+
+model Lead {
+  id                String         @id @default(uuid())
+  firstName         String
+  lastName          String
+  email             String         @unique
+  phone             String?
+  avatarUrl         String?
+  stage             String         @default("New") // New, Active, Qualified, Under contract, Agreement, Contacted, Nurture, Lost
+  score             Int            @default(50)
+  source            String         @default("Website") // Zillow, Referral, Website, Sphere, Facebook, Instagram, Google, Realtor.com, Open house
+  temperature       String         @default("Warm") // Hot, Warm, Cold
+  intent            String         @default("Buy") // Buy, Sell, Rent, Invest
+  budgetMin         Float?
+  budgetMax         Float?
+  propertyType      String?        // Condo, Single Family, Multi-family, Loft
+  preferredLocation String?        // Brickell, Coconut Grove, Edgewater, etc.
+  bedrooms          String?        // 2+, 3 bed, etc.
+  lookingFor        String         // e.g. "Buy · $600k to $720k · Brickell · 2+ bed"
+  assignedAgentId   String?
+  assignedAgent     User?          @relation("AssignedAgent", fields: [assignedAgentId], references: [id], onDelete: SetNull)
+  lastActivity      DateTime       @default(now())
+  nextFollowUp      DateTime?
+  notesSummary      String?
+  createdAt         DateTime       @default(now())
+  updatedAt         DateTime       @updatedAt
+
+  activities        LeadActivity[]
+  notes             LeadNote[]
+
+  @@index([stage])
+  @@index([source])
+  @@index([assignedAgentId])
+  @@map("leads")
+}
+
+model LeadActivity {
+  id          String   @id @default(uuid())
+  leadId      String
+  lead        Lead     @relation(fields: [leadId], references: [id], onDelete: Cascade)
+  userId      String?
+  user        User?    @relation(fields: [userId], references: [id], onDelete: SetNull)
+  type        String   // CALL, EMAIL, NOTE, STAGE_CHANGE, MEETING, FOLLOW_UP
+  title       String
+  description String?
+  createdAt   DateTime @default(now())
+
+  @@index([leadId])
+  @@map("lead_activities")
+}
+
+model LeadNote {
+  id        String   @id @default(uuid())
+  leadId    String
+  lead      Lead     @relation(fields: [leadId], references: [id], onDelete: Cascade)
+  authorId  String?
+  author    User?    @relation(fields: [authorId], references: [id], onDelete: SetNull)
+  content   String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([leadId])
+  @@map("lead_notes")
+}
+
+model SavedView {
+  id          String   @id @default(uuid())
+  name        String
+  userId      String?
+  user        User?    @relation(fields: [userId], references: [id], onDelete: Cascade)
+  filtersJson String
+  isDefault   Boolean  @default(false)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@index([userId])
+  @@map("saved_views")
+}

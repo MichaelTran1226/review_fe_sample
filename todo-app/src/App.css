@@ -1,0 +1,406 @@
+/* Main App Card Container */
+.todo-app-card {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  width: 100%;
+}
+
+/* Brand Header */
+.brand-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px 20px;
+  border-radius: 20px;
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  box-shadow: 0 4px 18px -4px rgba(16, 185, 129, 0.08), 0 2px 6px -2px rgba(0, 0, 0, 0.03);
+}
+
+.brand-title-wrap {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.brand-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 14px;
+  background: #ecfdf5;
+  color: #10b981;
+  border: 1px solid #a7f3d0;
+  box-shadow: 0 2px 8px -2px rgba(16, 185, 129, 0.2);
+}
+
+.brand-name {
+  font-size: 21px;
+  font-weight: 700;
+  color: #0f172a;
+  letter-spacing: -0.02em;
+  line-height: 1.2;
+}
+
+.brand-tagline {
+  font-size: 13px;
+  color: #64748b;
+  margin-top: 2px;
+}
+
+.brand-badge-pill {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  padding: 6px 14px;
+  border-radius: 24px;
+  background: #ecfdf5;
+  border: 1px solid #a7f3d0;
+  color: #047857;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.dot-pulse {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #10b981;
+  box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.25);
+}
+
+/* Stepper Section */
+.stepper-section {
+  width: 100%;
+}
+
+.step-content-pane {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding-top: 4px;
+}
+
+/* Add Task Form */
+.add-task-form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.add-task-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.add-task-input {
+  flex: 1;
+  height: 46px;
+  padding: 0 16px;
+  border-radius: 14px;
+  border: 1px solid #cbd5e1;
+  background: #ffffff;
+  color: #0f172a;
+  font-size: 14px;
+  outline: none;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04);
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+.add-task-input:focus {
+  border-color: #10b981;
+  box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.18);
+}
+
+.add-task-input::placeholder {
+  color: #94a3b8;
+}
+
+.add-task-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  height: 46px;
+  padding: 0 18px;
+  border-radius: 14px;
+  border: none;
+  background: #10b981;
+  color: #ffffff;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  white-space: nowrap;
+  box-shadow: 0 4px 12px -2px rgba(16, 185, 129, 0.4);
+  transition: background-color 0.15s ease, transform 0.1s ease;
+}
+
+.add-task-btn:hover:not(:disabled) {
+  background: #059669;
+}
+
+.add-task-btn:active:not(:disabled) {
+  transform: scale(0.97);
+}
+
+.add-task-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  box-shadow: none;
+}
+
+/* Filter Segment */
+.filter-segment-container {
+  display: flex;
+  width: 100%;
+}
+
+.filter-segment-container .rubber-segment {
+  width: 100%;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+}
+
+/* Tasks list */
+.tasks-scroll-list {
+  display: flex;
+  flex-direction: column;
+  min-height: 200px;
+}
+
+.task-row-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  height: 100%;
+  padding-right: 8px;
+}
+
+.task-row-meta {
+  display: flex;
+  align-items: center;
+  margin-left: auto;
+  padding-left: 10px;
+}
+
+.p-badge {
+  font-size: 11px;
+  font-weight: 600;
+  padding: 3px 8px;
+  border-radius: 6px;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.p-badge--high {
+  background: #fef2f2;
+  color: #dc2626;
+  border: 1px solid #fecaca;
+}
+
+.p-badge--medium {
+  background: #fffbeb;
+  color: #d97706;
+  border: 1px solid #fde68a;
+}
+
+.p-badge--low {
+  background: #f1f5f9;
+  color: #64748b;
+  border: 1px solid #e2e8f0;
+}
+
+.tasks-empty-state {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 140px;
+  border-radius: 16px;
+  border: 2px dashed #cbd5e1;
+  background: #ffffff;
+  color: #64748b;
+  font-size: 14px;
+}
+
+/* STEP 2: Progress Card & Activity List */
+.progress-summary-card {
+  padding: 18px 20px;
+  border-radius: 16px;
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  box-shadow: 0 2px 10px -2px rgba(16, 185, 129, 0.08);
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.progress-bar-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.progress-bar-title {
+  font-size: 15px;
+  font-weight: 600;
+  color: #0f172a;
+}
+
+.progress-bar-num {
+  font-size: 16px;
+  font-weight: 700;
+  color: #10b981;
+}
+
+.progress-track {
+  height: 10px;
+  border-radius: 6px;
+  background: #e2e8f0;
+  overflow: hidden;
+}
+
+.progress-fill {
+  height: 100%;
+  border-radius: 6px;
+  background: linear-gradient(90deg, #10b981, #059669);
+  transition: width 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.progress-caption {
+  font-size: 13px;
+  color: #64748b;
+}
+
+.section-label {
+  font-size: 14px;
+  font-weight: 600;
+  color: #334155;
+  margin-bottom: 8px;
+}
+
+.activity-icon-badge {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  border-radius: 8px;
+  background: #f1f5f9;
+  color: #64748b;
+}
+
+.activity-icon-badge--done {
+  background: #ecfdf5;
+  color: #10b981;
+}
+
+.activity-status-pill {
+  font-size: 11px;
+  font-weight: 600;
+  padding: 2px 8px;
+  border-radius: 12px;
+  background: #f1f5f9;
+  color: #64748b;
+}
+
+.activity-status-pill--done {
+  background: #ecfdf5;
+  color: #047857;
+  border: 1px solid #a7f3d0;
+}
+
+/* STEP 3: Pin Feature Card */
+.pin-feature-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 30px 24px;
+  border-radius: 20px;
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  box-shadow: 0 4px 16px -4px rgba(16, 185, 129, 0.08);
+  gap: 14px;
+}
+
+.pin-feature-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 56px;
+  height: 56px;
+  border-radius: 18px;
+  background: #ecfdf5;
+  color: #10b981;
+  border: 1px solid #a7f3d0;
+  box-shadow: 0 4px 12px -2px rgba(16, 185, 129, 0.2);
+}
+
+.pin-feature-title {
+  font-size: 18px;
+  font-weight: 700;
+  color: #0f172a;
+}
+
+.pin-feature-desc {
+  font-size: 14px;
+  color: #64748b;
+  max-width: 340px;
+  line-height: 1.4;
+}
+
+.code-slots-panel {
+  margin: 12px 0;
+}
+
+.pin-hint-badge {
+  font-size: 13px;
+  color: #047857;
+  background: #ecfdf5;
+  padding: 6px 14px;
+  border-radius: 20px;
+  border: 1px solid #a7f3d0;
+}
+
+/* Footer Navigation Switcher */
+.stepper-nav-footer {
+  display: flex;
+  justify-content: center;
+  padding-top: 8px;
+}
+
+.step-switch-tabs {
+  display: inline-flex;
+  padding: 4px;
+  border-radius: 16px;
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  box-shadow: 0 2px 8px -2px rgba(0, 0, 0, 0.05);
+  gap: 4px;
+}
+
+.step-tab-btn {
+  padding: 8px 16px;
+  border-radius: 12px;
+  border: none;
+  background: transparent;
+  color: #64748b;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.step-tab-btn:hover {
+  color: #0f172a;
+  background: #f8fafc;
+}
+
+.step-tab-btn--active {
+  background: #ecfdf5;
+  color: #047857;
+  box-shadow: inset 0 0 0 1px #a7f3d0;
+}
